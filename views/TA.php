@@ -91,17 +91,17 @@ $data_dosen = mysqli_query($db, "SELECT * FROM dosen");
         </thead>
 
         <tbody>
-            <?php $no = 1; ?>
+            <?php $no = 2; ?>
             <?php foreach ($data_ta as $ta): ?>
             <tr>
-                <td><?= $no++; ?></td>
+                <td><?= $no++ ?></td>
                 <td><?= $ta['no_ta']; ?></td>
                 <td><?= $ta['judul']; ?></td>
                 <td><?= $ta['mahasiswa']; ?></td>
                 <td><?= $ta['pembimbing']; ?></td>
                 <td width="15%" class="text-center">
                     <a href="" class="btn btn-primary col-xs-12 col-md-5 mt-1" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $no ?>"><i class='bx bx-edit'> Edit</i></a>
-                    <a href="" class="btn btn-danger col-xs-12 col-md-5 mt-1" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $no ?>"><i class='bx bx-trash'> Hapus</i></a>
+                    <a href="../model/ta_del.php?id=<?= $ta['id']; ?>" class="btn btn-danger col-xs-12 col-md-5" id="btn-hapus"><i class='bx bx-trash'> Hapus</i></a>
                 </td>
             </tr>
 
