@@ -110,6 +110,7 @@
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-info mb-5 mt-2 p-2 py-2 fs-5" data-bs-toggle="modal" data-bs-target="#modalTambah"><i class='bx bx-user-plus bx-sm'></i> Tambah Data</button>
+    <a href="../model/Excel/Dosen_Excel.php" class="btn btn-success p-1 fs-5 mb-3 float-end" value="Excel"><i class='bx bx-table mx-2 p-1'></i></a>
 
     <table class="col-xs-12 table table-bordered table-striped mt-4" id="tabel-data">
         <thead>

@@ -77,6 +77,7 @@ $data_dosen = mysqli_query($db, "SELECT * FROM dosen");
     <hr>
 
     <button type="button" class="btn btn-info mb-5 mt-2 p-2 py-2 fs-5" data-bs-toggle="modal" data-bs-target="#modalTambah"><i class='bx bx-user-plus bx-sm'></i> Tambah Data</button>
+    <a href="../model/Excel/TA_Excel.php" class="btn btn-success p-1 fs-5 mb-3 float-end" value="Excel"><i class='bx bx-table mx-2 p-1'></i></a>
 
     <table class="col-xs-12 table table-bordered table-striped mt-4" id="tabel-data">
         <thead>
@@ -175,108 +176,79 @@ $data_dosen = mysqli_query($db, "SELECT * FROM dosen");
                 </div>
             </div>
             <!-- End Modal Edit TA -->
-
-            <!-- Start Modal Hapus -->
-            <div class="modal fade" id="modalHapus<?= $no ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" onclick="Hapus">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Konfirmasi Hapus Data</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                
-                        <form action="" method="POST">
-                        <input type="hidden" name="id" value="<?= $ta['id']; ?>">
-                        
-                        <div class="modal-body">
-                            <h5 class="text-center">Apakah Anda yakin akan menghapus data ini?<br>
-                                <span class="text-danger"><?= $ta['judul']; ?></span>
-                            </h5>
-                
-                        </div>
-
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="Hapus">Ya, Hapus</button>
-                    </div>
-                </form>
-                </div>
-            </div>
-            </div>
-            <!-- End Modal Hapus -->
         <?php endforeach; ?>
         </tbody>
 </table>
 
-<!-- Start Modal Tambah TA -->
-<div class="modal fade" id="modalTambah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Form Data Dosen</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        
-        <form action="" method="POST">
-        <div class="modal-body">
-            
-            <div class="mb-3">
-                <label class="form-label">No Tugas Akhir</label>
-                <input type="text" class="form-control" name="no_ta" placeholder="Masukkan NOTA Anda!">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Judul TA</label>
-                <input type="text" class="form-control" name="judul" placeholder="Masukkan Judul TA Anda!">
-            </div>
-
-            <div class="mb-2">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Nama Mahasiswa</label>
-                    <select class="form-select" id="inputGroupSelect01" name="mahasiswa" required>
-                        <?php
-                            $no = 1;
-                            if ($data_mahasiswa == 0) {
-                                echo '<option value="0" selected> - Tidak Ada Data Mahasiswa - </option>';
-                            } else {
-                                echo '<option selected value="0" style="background-color: lightgrey";> - Pilih Nama Mahasiswa - </option>';
-                                foreach ($data_mahasiswa as $mahasiswa) :
-                            ?>
-                                <option value=" <?php echo $mahasiswa['id_mahasiswa'] ?>"><?php echo $mahasiswa['nim'] ?> - <?php echo $mahasiswa['nama_mahasiswa'] ?></option>
-                                <?php endforeach;
-                            } ?>
-                        </select>
-                    </div>
+        <!-- Start Modal Tambah TA -->
+        <div class="modal fade" id="modalTambah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-dark text-info">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Form Data Dosen</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
-            <div class="mb-2">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Nama Dosen Pembimbing</label>
-                    <select class="form-select" id="inputGroupSelect01" name="pembimbing" required>
-                        <?php
-                            $no = 1;
-                            if ($data_dosen == 0) {
-                                echo '<option value="0" selected> - Tidak Ada Data Dosen - </option>';
-                            } else {
-                                echo '<option selected value="0" style="background-color: lightgrey";> - Pilih Nama Dosen - </option>';
-                                foreach ($data_dosen as $dosen) :
-                            ?>
-                                <option value="<?php echo $dosen['id_dosen'] ?>"><?php echo $dosen['nama_dosen'] ?></option>
-                                <?php endforeach;
-                            } ?>
-                            </select>
-                        </div>
+                
+                <form action="" method="POST">
+                <div class="modal-body">
+                    
+                    <div class="mb-3">
+                        <label class="form-label">No Tugas Akhir</label>
+                        <input type="text" class="form-control" name="no_ta" placeholder="Masukkan NOTA Anda!">
                     </div>
-        </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" name="simpan">Save Changes</button>
+
+                    <div class="mb-3">
+                        <label class="form-label">Judul TA</label>
+                        <input type="text" class="form-control" name="judul" placeholder="Masukkan Judul TA Anda!">
+                    </div>
+
+                    <div class="mb-2">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Nama Mahasiswa</label>
+                            <select class="form-select" id="inputGroupSelect01" name="mahasiswa" required>
+                                <?php
+                                    $no = 1;
+                                    if ($data_mahasiswa == 0) {
+                                        echo '<option value="0" selected> - Tidak Ada Data Mahasiswa - </option>';
+                                    } else {
+                                        echo '<option selected value="0" style="background-color: lightgrey";> - Pilih Nama Mahasiswa - </option>';
+                                        foreach ($data_mahasiswa as $mahasiswa) :
+                                    ?>
+                                        <option value=" <?php echo $mahasiswa['id_mahasiswa'] ?>"><?php echo $mahasiswa['nim'] ?> - <?php echo $mahasiswa['nama_mahasiswa'] ?></option>
+                                        <?php endforeach;
+                                    } ?>
+                                </select>
+                            </div>
+                        </div>
+
+                    <div class="mb-2">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Nama Dosen Pembimbing</label>
+                            <select class="form-select" id="inputGroupSelect01" name="pembimbing" required>
+                                <?php
+                                    $no = 1;
+                                    if ($data_dosen == 0) {
+                                        echo '<option value="0" selected> - Tidak Ada Data Dosen - </option>';
+                                    } else {
+                                        echo '<option selected value="0" style="background-color: lightgrey";> - Pilih Nama Dosen - </option>';
+                                        foreach ($data_dosen as $dosen) :
+                                    ?>
+                                        <option value="<?php echo $dosen['id_dosen'] ?>"><?php echo $dosen['nama_dosen'] ?></option>
+                                        <?php endforeach;
+                                    } ?>
+                                    </select>
+                                </div>
+                            </div>
+                </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="simpan">Save Changes</button>
+                    </div>
+                </form>
+                </div>
             </div>
-        </form>
         </div>
-    </div>
-    </div>
-    <!-- End Modal Tambah TA-->
+        <!-- End Modal Tambah TA-->
 
 </div>
 

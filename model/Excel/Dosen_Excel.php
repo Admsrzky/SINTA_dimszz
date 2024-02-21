@@ -1,6 +1,6 @@
 <?php
-include('../layout/Config.php');
-require '../vendor/autoload.php';
+include('../../layout/Config.php');
+require '../../vendor/autoload.php';
  
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -11,28 +11,28 @@ $sheet = $spreadsheet->getActiveSheet();
 $sheet->setCellValue('A1', 'No');
 $sheet->getStyle('A1')->getFont()->setBold(true);
 $sheet->getStyle('A1')->getFont()->setSize(12);
-$sheet->setCellValue('B1', 'NIM');
+$sheet->setCellValue('B1', 'NIDN');
 $sheet->getStyle('B1')->getFont()->setBold(true);
 $sheet->getStyle('B1')->getFont()->setSize(12);
-$sheet->setCellValue('C1', 'Nama Mahasiswa');
+$sheet->setCellValue('C1', 'Nama Dosen');
 $sheet->getStyle('C1')->getFont()->setBold(true);
 $sheet->getStyle('C1')->getFont()->setSize(12);
-$sheet->setCellValue('D1', 'Prodi');
+$sheet->setCellValue('D1', 'Email');
 $sheet->getStyle('D1')->getFont()->setBold(true);
 $sheet->getStyle('D1')->getFont()->setSize(12);
 $sheet->setCellValue('E1', 'Alamat');
 $sheet->getStyle('E1')->getFont()->setBold(true);
 $sheet->getStyle('E1')->getFont()->setSize(12);
  
-$data = mysqli_query($db,"select * from mahasiswa");
+$data = mysqli_query($db,"select * from dosen");
 $i = 2;
 $no = 1;
 while($d = mysqli_fetch_array($data))
 {
     $sheet->setCellValue('A'.$i, $no++);
-    $sheet->setCellValue('B'.$i, $d['nim']);
-    $sheet->setCellValue('C'.$i, $d['nama_mahasiswa']);
-    $sheet->setCellValue('D'.$i, $d['prodi']);
+    $sheet->setCellValue('B'.$i, $d['nidn']);
+    $sheet->setCellValue('C'.$i, $d['nama_dosen']);
+    $sheet->setCellValue('D'.$i, $d['email']);
     $sheet->setCellValue('E'.$i, $d['alamat']);    
     $i++;
 }
@@ -40,7 +40,7 @@ foreach (range('A', $sheet->getHighestColumn()) as $col) {
     $sheet->getColumnDimension($col)->setAutoSize(true);
 }
 $writer = new Xlsx($spreadsheet);
-$writer->save('Data Mahasiswa.xlsx');
-echo "<script>window.location = 'Data Mahasiswa.xlsx'</script>";
+$writer->save('Data Dosen.xlsx');
+echo "<script>window.location = 'Data Dosen.xlsx'</script>";
  
 ?>
