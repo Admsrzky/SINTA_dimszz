@@ -167,7 +167,13 @@
 
                     <div class="mb-3">
                         <label class="form-label">Program Studi</label>
-                        <input type="text" class="form-control" name="prodi" value="<?= $mahasiswa['prodi']; ?>" placeholder="Masukkan Program Studi Anda!">
+                        <select class="form-select" name="prodi" >
+                            <option value="<?= $mahasiswa['prodi']; ?>"></option>
+                            <option value="Pendidikan Matematika">Pendidikan Matematika</option>
+                            <option value="Pendidikan Kimia">Pendidikan Kimia</option>
+                            <option value="Pendidikan Biologi">Pendidikan Biologi</option>
+                            <option value="Pendidikan IPA">Pendidikan IPA</option>
+                        </select>
                     </div>
                     
                     <div class="mb-3">
@@ -245,10 +251,10 @@
                 <label class="form-label">Program Studi</label>
                 <select class="form-select" name="prodi">
                     <option></option>
-                    <option value="Teknik Informatika">Teknik Informatika</option>
-                    <option value="Sistem Informasi">Sistem Informasi</option>
-                    <option value="Manajemen Informatika">Manajemen Informatika</option>
-                    <option value="Komputerisasi Akuntansi">Komputerisasi Akuntansi</option>
+                    <option value="Pendidikan Matematika">Pendidikan Matematika</option>
+                    <option value="Pendidikan Kimia">Pendidikan Kimia</option>
+                    <option value="Pendidikan Biologi">Pendidikan Biologi</option>
+                    <option value="Pendidikan IPA">Pendidikan IPA</option>
                 </select>
             </div>
             

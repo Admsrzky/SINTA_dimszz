@@ -1,14 +1,16 @@
 .login-dark {
     height:1000px;
-    background: #090243 url(./assets/img/tem.jpg);
+    /* background: #090243 url(./assets/img/bg-login.png); */
+    background-image: radial-gradient(circle at 50% -20.71%, #ffffdb 0, #ffffd4 8.33%, #ffffce 16.67%, #f7fec7 25%, #e9fbc1 33.33%, #daf7bb 41.67%, #c9f2b5 50%, #b7edb1 58.33%, #a4e9af 66.67%, #91e5af 75%, #7ce2b1 83.33%, #66dfb4 91.67%, #4cdcb9 100%);
     background-size: cover;
+    object-fit: cover;
     position:relative;
   }
   
   .login-dark form{
     max-width:400px;
     width: 100%;
-    background-color: #062064ce;
+    background-image: linear-gradient(180deg, #cdc3ff 0, #9d9df2 50%, #7278b7 100%);
     padding:40px;
     border-radius: 8px;
     transform:translate(-50%, -50%);
@@ -21,11 +23,11 @@
   
   .login-dark form .form-control {
     border: #10cfc2;
-    background-color: #090243;
+    background-image: radial-gradient(circle at 50% -20.71%, #eaecd0 0, #e6edd2 6.25%, #e2eed4 12.5%, #deefd6 18.75%, #daf0d9 25%, #d6f1dc 31.25%, #d3f1df 37.5%, #d0f2e2 43.75%, #cdf2e6 50%, #cbf2ea 56.25%, #c9f2ed 62.5%, #c8f2f1 68.75%, #c7f2f4 75%, #c7f2f7 81.25%, #c8f1fa 87.5%, #c9f1fd 93.75%, #cbf0ff 100%);
   }
   
   .login-dark form .btn-primary {
-    background:#10cfc2;
+    background:#b2e871;
     border:none;
     border-radius: 20px;
     padding:11px;
@@ -35,7 +37,7 @@
   }
   
   .login-dark form .btn-primary:hover, .login-dark form .btn-primary:active {
-    background:#214a80;
+    background-image: radial-gradient(circle at 50% -20.71%, #ff57d2 0, #ff4edb 12.5%, #f046e3 25%, #d63feb 37.5%, #b53cf2 50%, #8c3df9 62.5%, #4f40ff 75%, #0046ff 87.5%, #004bff 100%);
     outline:none;
   }
   
@@ -68,14 +70,14 @@ p {
 
 /* Register */
 
-.Register-dark {
+.register-container {
   height:1000px;
-  background:#090243 url(./assets/img/tem.jpg);
+  background-image: radial-gradient(circle at 50% -20.71%, #ffffdb 0, #ffffd4 8.33%, #ffffce 16.67%, #f7fec7 25%, #e9fbc1 33.33%, #daf7bb 41.67%, #c9f2b5 50%, #b7edb1 58.33%, #a4e9af 66.67%, #91e5af 75%, #7ce2b1 83.33%, #66dfb4 91.67%, #4cdcb9 100%);
   background-size:cover;
   position:relative;
 }
 
-.Register-dark form{
+.register-container form{
   max-width:400px;
   width: 100%;
   background-color: #062064ce;
@@ -89,12 +91,12 @@ p {
   box-shadow:3px 3px 4px rgba(0,0,0,0.2);
 }
 
-.Register-dark form .form-control {
+.register-container form .form-control {
   border: #10cfc2;
   background-color: #090243;
 }
 
-.Register-dark form .btn-primary {
+.register-container form .btn-primary {
   background:#10cfc2;
   border:none;
   border-radius: 20px;
@@ -105,12 +107,12 @@ p {
   outline:none;
 }
 
-.Register-dark form .btn-primary:hover, .Register-dark form .btn-primary:active {
+.register-container form .btn-primary:hover, .register-container form .btn-primary:active {
   background:#214a80;
   outline:none;
 }
 
-.Register-dark form .forgot {
+.register-container form .forgot {
   display:block;
   text-align:center;
   font-size: 1rem;

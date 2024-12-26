@@ -1,5 +1,15 @@
 <?php
-
+session_start();
+    
+// cek apakah ada session username atau tidak
+if (!isset($_SESSION['fullname'])) {
+    $now = 'none';
+    $user1 = '';
+} else {
+    $now = '';
+    $user1 = 'Account : ' . $_SESSION['fullname'];
+    $user = $_SESSION['fullname'];
+}
 ?>
 
 <!doctype html>
@@ -35,25 +45,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/user.css">
 
-    <title>CRUD | ADIMAS </title>
+    <title>CRUD | HILMA </title>
   </head>
   <body>
     <!-- jumbotron -->
   <div class="mb-1 p-1 bg-dark text-white rounded text-center col-md-12 col-xs-12 col-lg-12">
     <h1 class="mt-3">SINTA</h1> 
-    <p class="fs-5 text-uppercase mb-4">Sistem Informasi Tugas Akhir</p> 
+    <p class="fs-5 text-uppercase mb-4">Sistem CRUD PHP</p> 
 </div>
     <div class="">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand fs-3" href="../index.php">Dimszz<span class="text-warning">Code</span></a>
+                <a class="navbar-brand fs-3" href="../index.php">Hilma<span class="text-warning">Code</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mt-1">
         <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.php">Beranda</a></li>
-        <li class="nav-item"><a class="nav-link" href="">About Me</a></li>
+        <!-- <li class="nav-item"><a class="nav-link" href="">About Me</a></li> -->
       </ul>
       <ul class="navbar-nav mt-1">
         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pilihan</a>
@@ -66,17 +76,18 @@
       </ul>
   </div>
     <!-- <a href="Logout.php" class="text-muted btn fw-bold btn-block bg-light py-2 text-center text-uppercase text-burst-hover">Logout <i class='bx bx-exit bx-xs bx-fade-right-hover'></i></a> -->
-    <img src="../assets/img/Adimas.jpg" class="user-pic" onclick="toggleMenu()">
+    <img src="../assets/img/hilma.png" class="user-pic" onclick="toggleMenu()">
 
     <div class="sub-menu-wrap" id="subMenu">
       <div class="sub-menu">
         <div class="user-info">
-            <img src="../assets/img/Adimas.jpg">
-            <h3>Adimas Rizki</h3>
+            <img src="../assets/img/hilma.png">
+            <h3><?php if ($now == '') { ?><span class="text-primary"><?php echo $user ?></span>
+              <?php } else { ?><p class="text-danger">Error <span>Silahkan login terlebih dahulu</span></p><?php } ?></h3>
         </div>
         <hr>
 
-        <a href="" class="sub-menu-link">
+        <!-- <a href="" class="sub-menu-link">
             <img src="">
             <p>Edit Profile</p>
             <span>></span>
@@ -92,7 +103,7 @@
             <img src="">
             <p>Help & Support</p>
             <span>></span>
-        </a>
+        </a> -->
         
         <a href="../Logout.php" class="sub-menu-link" id="btn-logout">
             <img src="">

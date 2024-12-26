@@ -9,7 +9,7 @@
         $now = '';
         $user1 = 'Account : ' . $_SESSION['fullname'];
         $user = $_SESSION['fullname'];
-}
+    }
 
     include './layout/Config.php';
 
@@ -17,9 +17,6 @@
     $jumlah_dosen = mysqli_num_rows(mysqli_query($db, "SELECT * FROM dosen"));
     $jumlah_ta = mysqli_num_rows(mysqli_query($db, "SELECT * FROM ta"));
     $jumlah_buku = mysqli_num_rows(mysqli_query($db, "SELECT * FROM buku"));
-
-
- 
 ?>
 <!doctype html>
 <html lang="en">
@@ -38,25 +35,29 @@
     <!-- boxIcons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/user.css">
 
-    <title>CRUD | ADIMAS </title>
+    <title>CRUD | HILMA </title>
   </head>
   <body>
     <!-- jumbotron -->
   <div class="mb-1 p-5 bg-dark text-white rounded text-center col-md-12 col-xs-12 col-lg-12">
     <h1>SINTA</h1> 
-    <p class="fs-5 text-uppercase">Sistem Informasi Tugas Akhir</p>
+    <p class="fs-5 text-uppercase">Sistem Crud PHP</p>
 </div>
 
-<div class="container text-center" style="margin-top:80px">
+<div class="container text-center text-uppercase" style="margin-top:80px">
     <div class="row">
-        <h1> <?php if ($now == '') { ?>SELAMAT DATANG <?php echo $user ?> <br> SISTEM INFORMASI TUGAS AKHIR (SINTA)
-             <?php } else { ?> SELAMAT DATANG <br> SISTEM INFORMASI TUGAS AKHIR (SINTA) <?php } ?></h1>
+        <h1> <?php if ($now == '') { ?>SELAMAT DATANG <span class="text-primary"><?php echo $user ?></span> <br> SISTEM CRUD PHP
+             <?php } else { ?> SELAMAT DATANG <br>SISTEM CRUD PHP <?php } ?></h1>
         
-      <div class="col-sm-4 mb-sm-0">
+        <!-- Card Mahasiswa -->
+        <div class="col-sm-4 mb-sm-0">
             <div class="card mt-4">
                 <div class="card-header text-uppercase fw-bold">Mahasiswa</div>
                 <div class="card-body">
@@ -66,11 +67,15 @@
                     <p class="card-text">
                         <?php echo $jumlah_mahasiswa ?>
                     </p>
-                    <a href="views/mahasiswa.php" class="btn btn-primary">Selengkapnya <i data-feather="chevrons-right"></i>
-                    </a>
+                    <a href="<?php echo isset($_SESSION['fullname']) ? 'views/mahasiswa.php' : '#' ?>" 
+                       class="btn btn-primary" 
+                       onclick="checkLogin(<?php echo isset($_SESSION['fullname']) ? 'true' : 'false' ?>)">Selengkapnya 
+                       <i data-feather="chevrons-right"></i></a>
                 </div>
             </div>
         </div>
+
+        <!-- Card Dosen -->
         <div class="col-sm-4 mb-3 mb-sm-0">
             <div class="card mt-4">
                 <div class="card-header text-uppercase fw-bold">Dosen</div>
@@ -81,11 +86,15 @@
                     <p class="card-text">
                         <?php echo $jumlah_dosen ?>
                     </p>
-                    <a href="views/dosen.php" class="btn btn-primary">Selengkapnya <i data-feather="chevrons-right"></i>
-                    </a>
+                    <a href="<?php echo isset($_SESSION['fullname']) ? 'views/dosen.php' : '#' ?>" 
+                       class="btn btn-primary" 
+                       onclick="checkLogin(<?php echo isset($_SESSION['fullname']) ? 'true' : 'false' ?>)">Selengkapnya 
+                       <i data-feather="chevrons-right"></i></a>
                 </div>
             </div>
         </div>
+
+        <!-- Card Tugas Akhir -->
         <div class="col-sm-4 mb-3">
             <div class="card mt-4">
                 <div class="card-header text-uppercase fw-bold">Tugas Akhir</div>
@@ -96,12 +105,15 @@
                     <p class="card-text">
                         <?php echo $jumlah_ta ?>
                     </p>
-                    <a href="./views/TA.php" class="btn btn-primary">Selengkapnya <i data-feather="chevrons-right"></i>
-                    </a>
+                    <a href="<?php echo isset($_SESSION['fullname']) ? './views/TA.php' : '#' ?>" 
+                       class="btn btn-primary" 
+                       onclick="checkLogin(<?php echo isset($_SESSION['fullname']) ? 'true' : 'false' ?>)">Selengkapnya 
+                       <i data-feather="chevrons-right"></i></a>
                 </div>
             </div>
         </div>
 
+        <!-- Card Buku -->
         <div class="col-sm-4 mb-3">
             <div class="card mt-4">
                 <div class="card-header text-uppercase fw-bold">Buku</div>
@@ -112,16 +124,31 @@
                     <p class="card-text">
                         <?php echo $jumlah_buku ?>
                     </p>
-                    <a href="./views/Buku.php" class="btn btn-primary">Selengkapnya <i data-feather="chevrons-right"></i>
-                    </a>
+                    <a href="<?php echo isset($_SESSION['fullname']) ? './views/Buku.php' : '#' ?>" 
+                       class="btn btn-primary" 
+                       onclick="checkLogin(<?php echo isset($_SESSION['fullname']) ? 'true' : 'false' ?>)">Selengkapnya 
+                       <i data-feather="chevrons-right"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<?php
+<script>
+    function checkLogin(isLoggedIn) {
+        if (!isLoggedIn) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Belum Login',
+                text: 'Silakan login terlebih dahulu untuk melanjutkan.',
+                confirmButtonText: 'Login'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = './auth/Login.php';
+                }
+            });
+        }
+    }
+</script>
 
-include("layout/footer.php");
-
-?>
+<?php include("layout/footer.php"); ?>
